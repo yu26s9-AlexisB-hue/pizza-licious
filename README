@@ -1,6 +1,139 @@
 Pizza-Licious:
-The purpose of the app is to create a custom pizza shop that can automate itself. There are 3 different sizes of pizza, 4 types of crust, a choice between Premium Toppings and Regular toppings, etc. The choices are all in the power of the customer.
 
-Screens and feature:
-Home Screen: Once the app is opened the user first sees the Home Screen. The screen allows the user the option to create a new order. 
-To exit the program the user will press the number 0.
+Description:
+Pizza-Licious is a console-based pizza ordering application that allows customers to fully customize their orders. Customers can choose from multiple pizza sizes, crust types, toppings, sauces, stuffed crust options, drinks, and garlic knots while viewing their order details and total price before checkout.
+The application is designed to simulate a real pizza shop ordering system by guiding the customer through each step of the ordering process and automatically generating a receipt file for completed orders.
+
+---
+
+Features:
+
+Pizza Customization:
+Customers can fully customize their pizzas by selecting:
+
+Pizza Sizes:
+- Personal (8")
+- Medium (12")
+- Large (16")
+
+Crust Types:
+- Thin
+- Regular
+- Thick
+- Cauliflower
+
+Toppings:
+Toppings are divided into two categories:
+
+Premium Toppings:
+- Meats
+- Cheeses
+
+Regular Toppings:
+- Vegetables and other standard toppings
+
+*Customers may also request extra portions of toppings for an additional cost depending on the topping type.
+
+Additional Pizza Options:
+- Select pizza sauce
+- Add stuffed crust
+
+---
+
+# Screens and Features
+
+Home Screen:
+
+When the application starts, the user is presented with the Home Screen.
+
+Options:
+- 1) New Order
+- 0) Exit
+
+*The application will continue running until the user chooses to exit.
+
+---
+
+Order Screen:
+
+If the user selects 'New Order', they are taken to the Order Screen.
+
+Options:
+- 1) Add Pizza
+- 2) Add Drink
+- 3) Add Garlic Knots
+- 4) Checkout
+- 0) Cancel Order
+
+If the user cancels the order, the order is deleted and the application returns to the Home Screen.
+Items added to the order are displayed with the newest entries first.
+
+---
+
+Add Pizza Screen:
+
+The Add Pizza Screen walks the customer through the pizza creation process step-by-step.
+
+Pizza Creation Options:
+- Select pizza type
+- Select pizza size
+- Select crust type
+- Add toppings
+    - Meat toppings
+    - Cheese toppings
+    - Other toppings
+- Add extra toppings
+- Select sauce
+- Choose whether the pizza should have stuffed crust
+
+*Each pizza is customized individually before returning to the Order Screen.
+
+---
+
+Add Drink Screen
+The Add Drink Screen allows the user to customize a drink order.
+
+Options:
+- Select drink size
+- Select drink flavor
+
+---
+
+Add Garlic Knots Screen:
+The Add Garlic Knots Screen allows the user to select the quantity of garlic knots they would like to order.
+
+---
+
+Checkout Screen:
+
+The Checkout Screen displays the complete order summary, including:
+- All pizzas and toppings
+- Drinks
+- Garlic knots
+- Total order price
+
+*The customer can then verify that the order is correct before completing the purchase.
+
+Checkout Options:
+- Confirm — Finalizes the order, creates a receipt file, and returns to the Home Screen
+- Cancel — Deletes the order and returns to the Home Screen
+
+---
+
+Order Validation Rules:
+
+- Customers may place an order with zero or more pizzas.
+- If the customer orders zero pizzas, they must purchase at least one drink or garlic knots before checkout is allowed.
+
+---
+
+Receipt Generation:
+
+When an order is confirmed, the application automatically creates a receipt text file inside a `receipts` folder.
+
+Each receipt file is named using the date and time the order was placed using the following format:
+
+yyyyMMdd-hhmmss.txt
+
+Example:
+20230329-121523.txt
