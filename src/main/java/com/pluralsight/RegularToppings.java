@@ -3,8 +3,8 @@ package com.pluralsight;
 public class RegularToppings extends Toppings {
     private double numberOfToppings;
 
-    public RegularToppings(String name, boolean isPremium, boolean isExtra, double numberOfToppings) {
-        super(name, isPremium, isExtra);
+    public RegularToppings(boolean isExtra, double numberOfToppings) {
+        super(isExtra);
         this.numberOfToppings = numberOfToppings;
     }
 
