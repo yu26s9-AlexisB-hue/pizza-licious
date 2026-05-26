@@ -43,8 +43,21 @@ public class Pizza {
         isStuffedCrust = stuffedCrust;
     }
 
-    public double calculatingPrice(){
+    public double getCrustPrice(){
         //todo:Figure out how much the pizza costs just using the crust and size.
-        return 0;
+        double priceOfCrust = 0;
+        if (size == PizzaSize.PERSONAL){
+            priceOfCrust = 8.50;
+        }else if(size == PizzaSize.MEDIUM){
+            priceOfCrust = 12.00;
+        }else if(size == PizzaSize.LARGE){
+            priceOfCrust = 16.50;
+        }
+
+        if(isStuffedCrust){
+            priceOfCrust += 2.50;
+        }
+
+        return priceOfCrust;
     }
 }
