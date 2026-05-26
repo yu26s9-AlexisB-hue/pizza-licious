@@ -1,32 +1,15 @@
 package com.pluralsight;
 
+import ToppingEnums.PremiumType;
+
 public class PremiumToppings extends Toppings{
-    private Meats premiumMeat;
-    private Cheese premiumCheese;
+    private PremiumType premium;
     private boolean isMeat;
 
-    public PremiumToppings(boolean isExtra, Meats premiumMeat, Cheese premiumCheese, boolean isMeat) {
+    public PremiumToppings(boolean isExtra, boolean isMeat, PremiumType premium) {
         super(isExtra);
-        this.premiumMeat = premiumMeat;
-        this.premiumCheese = premiumCheese;
         this.isMeat = isMeat;
-    }
-
-
-    public Meats getPremiumMeat() {
-        return premiumMeat;
-    }
-
-    public void setPremiumMeat(Meats premiumMeat) {
-        this.premiumMeat = premiumMeat;
-    }
-
-    public Cheese getPremiumCheese() {
-        return premiumCheese;
-    }
-
-    public void setPremiumCheese(Cheese premiumCheese) {
-        this.premiumCheese = premiumCheese;
+        this.premium = premium;
     }
 
     public boolean isMeat() {
@@ -37,8 +20,13 @@ public class PremiumToppings extends Toppings{
         isMeat = meat;
     }
 
+    public PremiumType getPremium() {
+        return premium;
+    }
 
-
+    public void setPremium(PremiumType premium) {
+        this.premium = premium;
+    }
 
     @Override
     public double calculatePrice(){
@@ -53,11 +41,9 @@ public class PremiumToppings extends Toppings{
 
     @Override
     public String toString(){
-        if(isExtra()) && isMeat {
-            return "Extra" + premiumMeat;
-        }else if(!isMeat && isExtra()){
-            return "Extra" + premiumCheese;
+        if(isExtra()){
+            return "Extra" + premium;
         }
-        return toppingType.toString();
+        return premium.toString();
     }
 }
