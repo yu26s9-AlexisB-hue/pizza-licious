@@ -1,28 +1,38 @@
 package com.pluralsight;
 
+import ToppingEnums.RegularType;
+
 public class RegularToppings extends Toppings {
-    private double numberOfToppings;
+    private RegularType regular;
 
-    public RegularToppings(boolean isExtra, double numberOfToppings) {
+    public RegularToppings(boolean isExtra, RegularType regular) {
         super(isExtra);
-        this.numberOfToppings = numberOfToppings;
+        this.regular = regular;
     }
 
-    public double getNumberOfToppings() {
-        return numberOfToppings;
+    public RegularType getRegular() {
+        return regular;
     }
 
-    public void setNumberOfToppings(double numberOfToppings) {
-        this.numberOfToppings = numberOfToppings;
+    public void setRegular(RegularType regular) {
+        this.regular = regular;
     }
 
-    public String itemsChosen(){
-        //todo: figure out how I will use this.
-        return "";
-    }
 
+    @Override
     public double calculatePrice(){
         //todo:Code to find the final price.
         return 0;
     }
+
+    @Override
+    public String toString(){
+        //formating how the user see the extra topping on the receipt.
+        if(isExtra()){
+            return "Extra" + regular;
+        }
+
+        return regular.toString();
+    }
+
 }
