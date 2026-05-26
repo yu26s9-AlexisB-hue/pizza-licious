@@ -60,4 +60,9 @@ public class Pizza {
 
         return priceOfCrust;
     }
+
+    public double getTotalValue(){
+
+        return getCrustPrice();
+    }
 }
