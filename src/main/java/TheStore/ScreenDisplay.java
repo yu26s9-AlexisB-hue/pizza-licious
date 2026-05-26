@@ -25,6 +25,10 @@ public class ScreenDisplay {
                 case 0:
                     running = false;
                     break;
+
+                default:
+                    System.out.println("Invalid Entry.");
+                    break;
             }
         }
     }
@@ -34,19 +38,56 @@ public class ScreenDisplay {
         while(running2){
             String prompt2 = """
                     1 - Add Pizza
-                    0 - Cancle Order
+                    2 - Add Drink
+                    3 - Add Garlic Knots
+                    4 - Proceed to Checkout
+                    0 - Cancel Order
                     """;
             //todo:add the options as I go
             int command2 = Console.promptForInt(prompt2);
 
             switch(command2){
                 case 1:
-
+                    processPizzaOrder();
                     break;
+
+                case 2:
+                    processDrinkOrder();
+                    break;
+
+                case 3:
+                    processGarlicKnotOrder();
+                    break;
+
+                case 4:
+                    checkOut();
+                    break;
+
                 case 0:
                     running2 = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid Entry.");
+                    break;
             }
         }
+    }
+    private void processPizzaOrder(){
+        //todo: acutally add pizza to the order list.
+        System.out.println("Pizza has been add!");
+    }
+    private void processDrinkOrder(){
+        //todo: actually add drinks to order list
+        System.out.println("Drink has been added!");
+    }
+    private void processGarlicKnotOrder(){
+        //todo: Actually add garlic knots to the order.
+        System.out.println("Your Garlic Knots have been added!");
+    }
+    private void checkOut(){
+        //todo: should bring the customer to new page where they decide to buy or cancle.
+        System.out.println("Ready to check out?");
     }
 
 

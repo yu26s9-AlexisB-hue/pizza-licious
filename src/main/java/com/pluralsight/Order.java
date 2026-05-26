@@ -53,7 +53,7 @@ public class Order {
         System.out.println("Total: " + calculateTotal());
     }
 
-    public List<OrderedItems> getOrderedItem() {
+    public List<OrderedItems> displayOrder() {
         ArrayList<OrderedItems> currentOrder = new ArrayList<>();
 
         for(OrderedItems order : orderedItem){
