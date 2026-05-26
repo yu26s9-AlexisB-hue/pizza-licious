@@ -1,6 +1,6 @@
 package ToppingEnums;
 
-public enum Crust {
+public enum CrustType {
     THIN,
     REGULAR,
     THICK,
