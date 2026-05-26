@@ -30,7 +30,7 @@ public class PremiumToppings extends Toppings{
 
     @Override
     public double calculatePrice(){
-        //todo:Code to find the final price.
+        //Code to find the final price.
         double price = 2.00;
         if(isExtra()){
             price += 1.00;
