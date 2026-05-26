@@ -1,8 +1,5 @@
 package com.pluralsight;
 
-import ToppingEnums.Cheese;
-import ToppingEnums.Meats;
-
 public class PremiumToppings extends Toppings{
     private Meats premiumMeat;
     private Cheese premiumCheese;
