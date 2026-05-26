@@ -21,8 +21,13 @@ public class RegularToppings extends Toppings {
 
     @Override
     public double calculatePrice(){
-        //todo:Code to find the final price.
-        return 0;
+        //Code to find the final price.
+        double price = 1.00;
+
+        if(isExtra()){
+            price += 0.50;
+        }
+        return price;
     }
 
     @Override
