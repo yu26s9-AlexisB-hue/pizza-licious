@@ -32,7 +32,6 @@ public class ScreenDisplay {
             }
         }
     }
-
     private void newOrderScreen(){
         boolean running2 = true;
         while(running2){
@@ -86,8 +85,28 @@ public class ScreenDisplay {
         System.out.println("Your Garlic Knots have been added!");
     }
     private void checkOut(){
-        //todo: should bring the customer to new page where they decide to buy or cancle.
+        //todo: should bring the customer to new page where they decide to buy or cancel.
+        //todo:must display the order details and the price (orderedItems interface will come in handy).
         System.out.println("Ready to check out?");
+        boolean running3 = true;
+
+        while(running3){
+            String prompt3 = """
+                    1 - Confirm Order
+                    0 - Cancel Order
+                    """;
+            int command3 = Console.promptForInt(prompt3);
+
+            switch(command3){
+                case 1:
+                    System.out.println("Order is complete!");
+                    return;
+                case 0:
+                    running3 = false;
+                    System.out.println("Order Canceled.");
+                    break;
+            }
+        }
     }
 
 
