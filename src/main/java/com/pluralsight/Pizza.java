@@ -6,7 +6,7 @@ import ToppingEnums.PizzaSize;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pizza {
+public class Pizza implements OrderedItems {
     private PizzaSize size;
     private CrustType crustChoice;
     private boolean isStuffedCrust;
@@ -64,5 +64,10 @@ public class Pizza {
     public double getTotalValue(){
 
         return getCrustPrice();
+    }
+
+    @Override
+    public String getReceiptDescription() {
+        return size + " " + crustChoice + " pizza";
     }
 }

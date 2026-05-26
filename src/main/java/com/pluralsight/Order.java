@@ -1,20 +1,19 @@
 package com.pluralsight;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
     private String orderId;
     private LocalDate date;
-    private int pizza;
-    private int drinks;
-    private int garlicKnots;
+    private List<OrderedItems> orderedItem;
 
-    public Order(String orderId, LocalDate date, int pizza, int drinks, int garlicKnots) {
+    public Order(String orderId, LocalDate date) {
         this.orderId = orderId;
         this.date = date;
-        this.pizza = pizza;
-        this.drinks = drinks;
-        this.garlicKnots = garlicKnots;
+        this.orderedItem = new ArrayList<>();
+
     }
 
     public String getOrderId() {
@@ -33,28 +32,27 @@ public class Order {
         this.date = date;
     }
 
-    public int getPizza() {
-        return pizza;
+    public void addPizza(OrderedItems pizza) {
+        orderedItem.add(pizza);
     }
 
-    public void setPizza(int pizza) {
-        this.pizza = pizza;
+    public double calculateTotal(){
+        double total = 0;
+
+        for(OrderedItems order : orderedItem){
+            total += order.getTotalValue();
+        }
+        return total;
     }
 
-    public int getDrinks() {
-        return drinks;
+    public void printReceipt(){
+        for(OrderedItems order: orderedItem){
+            System.out.println(order.getReceiptDescription());
+            System.out.println(order.getTotalValue());
+        }
+        System.out.println("Total: " + calculateTotal());
     }
 
-    public void setDrinks(int drinks) {
-        this.drinks = drinks;
-    }
 
-    public int getGarlicKnots() {
-        return garlicKnots;
-    }
-
-    public void setGarlicKnots(int garlicKnots) {
-        this.garlicKnots = garlicKnots;
-    }
 }
 
