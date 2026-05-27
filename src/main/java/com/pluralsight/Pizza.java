@@ -61,13 +61,39 @@ public class Pizza implements OrderedItems {
         return priceOfCrust;
     }
 
-    public double getTotalValue(){
+    public void addTopping(Toppings topping){
+        toppings.add(topping);
+    }
 
-        return getCrustPrice();
+    public double getTotalValue(){
+        double total = getCrustPrice();
+
+        for(Toppings topping : toppings){
+            total += topping.calculatePrice();
+        }
+
+        return total;
     }
 
     @Override
     public String getReceiptDescription() {
-        return size + " " + crustChoice + " pizza";
+        StringBuilder pizzaInfo = new StringBuilder();
+        pizzaInfo.append(size).append(" ").append(crustChoice).append("pizza");
+
+        //checks if toppings exist.
+        if(!toppings.isEmpty()){
+            pizzaInfo.append(" with ");
+
+            //Looping through toppings.
+            for(int i = 0; i < toppings.size(); i++){
+                pizzaInfo.append(toppings.get(i));
+
+                //add a new line after every topping.
+                if(i < toppings.size()-1){
+                    pizzaInfo.append("\n");
+                }
+            }
+        }
+        return pizzaInfo.toString();
     }
 }
