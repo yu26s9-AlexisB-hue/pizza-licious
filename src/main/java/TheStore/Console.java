@@ -2,6 +2,9 @@ package TheStore;
 
 import ToppingEnums.CrustType;
 import ToppingEnums.PizzaSize;
+import ToppingEnums.PremiumType;
+import ToppingEnums.RegularType;
+import com.pluralsight.Toppings;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -84,6 +87,11 @@ public class Console {
         //opportunity to enhance this with some error protection.
     }
 
+    /**
+     * Prompts the user to type out what pizza size that they would like.
+     * @param prompt to display to the user
+     * @return the enum
+     */
     public static PizzaSize promptForPizzaSize(String prompt){
         System.out.println(prompt);
 
@@ -101,6 +109,12 @@ public class Console {
                 return null;
         }
     }
+
+    /**
+     * Prompt the user to type out what crust they would like
+     * @param prompt to display to the user
+     * @return the enum
+     */
 
     public static CrustType promptForPizzaCrust(String prompt){
         System.out.println(prompt);
@@ -125,4 +139,46 @@ public class Console {
                 return null;
         }
     }
+
+    /**
+     * Prompts the user to type out which Premium topping that the would like.
+     * @param prompt display to the user
+     * @return the enum
+     */
+
+    public static PremiumType promptForPremiumToppings(String prompt){
+        while(true) {
+            try {
+                System.out.println(prompt);
+
+                String premiumTopping = scanner.nextLine().toUpperCase();
+
+                return PremiumType.valueOf(premiumTopping);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid topping.");
+            }
+        }
+    }
+
+    /**
+     * prompts the user for their choice of a regular topping
+     * @param prompt display to the user
+     * @return the enum
+     */
+
+    public static RegularType promptForRegularToppings(String prompt){
+        while(true){
+            try {
+                System.out.println(prompt);
+
+                String regularTopping = scanner.nextLine().toUpperCase();
+
+                return RegularType.valueOf(regularTopping);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid topping.");
+            }
+        }
+    }
+
 }
