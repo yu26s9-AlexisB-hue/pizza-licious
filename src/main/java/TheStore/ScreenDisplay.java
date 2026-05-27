@@ -10,6 +10,7 @@ import com.pluralsight.PremiumToppings;
 import com.pluralsight.RegularToppings;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 public class ScreenDisplay {
@@ -44,7 +45,7 @@ public class ScreenDisplay {
         }
     }
     private void init(){
-        order = new Order(idGenerator(), LocalDate.now());
+        order = new Order(idGenerator(), LocalDateTime.now());
     }
     private void newOrderScreen(){
         boolean running2 = true;
@@ -145,6 +146,7 @@ public class ScreenDisplay {
 
             switch(command3){
                 case 1:
+                    order.confirmOrder();
                     System.out.println("Order is complete!");
                     return;
                 case 0:

@@ -78,7 +78,7 @@ public class Pizza implements OrderedItems {
     @Override
     public String getReceiptDescription() {
         StringBuilder pizzaInfo = new StringBuilder();
-        pizzaInfo.append(size).append(" ").append(crustChoice).append("Crust pizza");
+        pizzaInfo.append(size).append(" ").append(crustChoice).append(" Crust pizza");
 
         //checks if toppings exist.
         if(!toppings.isEmpty()){

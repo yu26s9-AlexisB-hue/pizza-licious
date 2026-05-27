@@ -3,16 +3,17 @@ package com.pluralsight;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
     private String orderId;
-    private LocalDate date;
+    private LocalDateTime date;
     private List<OrderedItems> orderedItems;
 
-    public Order(String orderId, LocalDate date) {
+    public Order(String orderId, LocalDateTime date) {
         this.orderId = orderId;
         this.date = date;
         this.orderedItems = new ArrayList<>();
@@ -27,11 +28,11 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

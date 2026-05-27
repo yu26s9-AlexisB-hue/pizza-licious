@@ -1,0 +1,10 @@
+==== RECEIPT ====
+Order ID: ORDER-3632
+Date: 2026-05-27T15:32:35.001670400
+
+PERSONAL THIN Crust pizza with 
+PINEAPPLE
+HAM
+Price: $11.5
+
+Total: $11.5
