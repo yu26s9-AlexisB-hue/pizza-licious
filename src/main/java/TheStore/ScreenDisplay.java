@@ -1,6 +1,12 @@
 package TheStore;
 
+import ToppingEnums.CrustType;
+import ToppingEnums.PizzaSize;
 import com.pluralsight.Order;
+import com.pluralsight.Pizza;
+
+import java.time.LocalDate;
+import java.util.Random;
 
 public class ScreenDisplay {
     private Order order;
@@ -19,6 +25,7 @@ public class ScreenDisplay {
 
             switch (command1) {
                 case 1:
+                    init();
                     newOrderScreen();
                     break;
 
@@ -31,6 +38,9 @@ public class ScreenDisplay {
                     break;
             }
         }
+    }
+    private void init(){
+        order = new Order(idGenerator(), LocalDate.now());
     }
     private void newOrderScreen(){
         boolean running2 = true;
@@ -74,6 +84,11 @@ public class ScreenDisplay {
     }
     private void processPizzaOrder(){
         //todo: acutally add pizza to the order list.
+        PizzaSize size = Console.promptForPizzaSize("What size of Pizza would you like(Personal/Medium/Large): ");
+        CrustType crust = Console.promptForPizzaCrust("What type of crust would you like? ");
+        boolean stuffed = Console.promptForYesNo("Would you like to make your pizza stuffed crust? ");
+        Pizza pizza = new Pizza(size,crust,stuffed);
+        order.addPizza(pizza);
         System.out.println("Pizza has been add!");
     }
     private void processDrinkOrder(){
@@ -91,6 +106,7 @@ public class ScreenDisplay {
         boolean running3 = true;
 
         while(running3){
+            order.printReceipt();
             String prompt3 = """
                     1 - Confirm Order
                     0 - Cancel Order
@@ -108,6 +124,11 @@ public class ScreenDisplay {
             }
         }
     }
+    private String idGenerator(){
+        Random random = new Random();
 
+        int randomNum = random.nextInt(9000) + 1000;
 
+        return "ORDER-" + randomNum;
+    }
 }

@@ -1,5 +1,8 @@
 package TheStore;
 
+import ToppingEnums.CrustType;
+import ToppingEnums.PizzaSize;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -79,5 +82,47 @@ public class Console {
         String userInput = scanner.nextLine();
         return userInput.equalsIgnoreCase("YES");
         //opportunity to enhance this with some error protection.
+    }
+
+    public static PizzaSize promptForPizzaSize(String prompt){
+        System.out.println(prompt);
+
+        String pizzaSize = scanner.nextLine().toUpperCase();
+
+        switch(pizzaSize){
+            case "PERSONAL":
+                return PizzaSize.PERSONAL;
+            case "MEDIUM":
+                return PizzaSize.MEDIUM;
+            case "LARGE":
+                return PizzaSize.LARGE;
+            default:
+                System.out.println("Invalid Pizza size.");
+                return null;
+        }
+    }
+
+    public static CrustType promptForPizzaCrust(String prompt){
+        System.out.println(prompt);
+
+        String pizzaCrust = scanner.nextLine().toUpperCase();
+
+        switch(pizzaCrust){
+            case "THIN":
+                return CrustType.THIN;
+
+            case "THICK":
+                return CrustType.THICK;
+
+            case "REGULAR":
+                return CrustType.REGULAR;
+
+            case "CAULIFLOWER":
+                return CrustType.CAULIFLOWER;
+
+            default:
+                System.out.println("Invalid Entry.");
+                return null;
+        }
     }
 }

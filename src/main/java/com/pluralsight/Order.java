@@ -1,18 +1,21 @@
 package com.pluralsight;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
     private String orderId;
     private LocalDate date;
-    private List<OrderedItems> orderedItem;
+    private List<OrderedItems> orderedItems;
 
     public Order(String orderId, LocalDate date) {
         this.orderId = orderId;
         this.date = date;
-        this.orderedItem = new ArrayList<>();
+        this.orderedItems = new ArrayList<>();
 
     }
 
@@ -33,33 +36,63 @@ public class Order {
     }
 
     public void addPizza(OrderedItems pizza) {
-        orderedItem.add(pizza);
+        orderedItems.add(pizza);
     }
 
     public double calculateTotal(){
         double total = 0;
 
-        for(OrderedItems order : orderedItem){
+        for(OrderedItems order : orderedItems){
             total += order.getTotalValue();
         }
         return total;
     }
 
     public void printReceipt(){
-        for(OrderedItems order: orderedItem){
+        for(OrderedItems order: orderedItems){
             System.out.println(order.getReceiptDescription());
             System.out.println(order.getTotalValue());
         }
         System.out.println("Total: " + calculateTotal());
     }
 
-    public List<OrderedItems> displayOrder() {
-        ArrayList<OrderedItems> currentOrder = new ArrayList<>();
+    public void confirmOrder(){
+        DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss");
+        String newOrder = date.format(dateTime);
 
-        for(OrderedItems order : orderedItem){
-            currentOrder.add(order);
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("Receipts/" + newOrder + ".txt"));
+
+            writer.write("==== RECEIPT ====");
+            writer.newLine();
+
+            writer.write("Order ID: " + orderId);
+            writer.newLine();
+
+            writer.write("Date: " + date);
+            writer.newLine();
+            writer.newLine();
+
+            for(OrderedItems order : orderedItems){
+
+                writer.write(order.getReceiptDescription());
+                writer.newLine();
+
+                writer.write("Price: $" + order.getTotalValue());
+                writer.newLine();
+                writer.newLine();
+            }
+
+            writer.write("Total: $" + calculateTotal());
+            writer.newLine();
+
+            writer.close();
+
+            System.out.println("Receipt saved successfully.");
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        return currentOrder;
     }
 }
 
