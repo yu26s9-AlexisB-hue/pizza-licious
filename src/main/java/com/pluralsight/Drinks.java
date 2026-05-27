@@ -42,7 +42,7 @@ public class Drinks implements OrderedItems {
 
     @Override
     public String getReceiptDescription(){
-        return name + " Price: " + getTotalValue();
+        return name;
     }
 
 }

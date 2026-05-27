@@ -4,10 +4,8 @@ import ToppingEnums.CrustType;
 import ToppingEnums.PizzaSize;
 import ToppingEnums.PremiumType;
 import ToppingEnums.RegularType;
-import com.pluralsight.Order;
-import com.pluralsight.Pizza;
-import com.pluralsight.PremiumToppings;
-import com.pluralsight.RegularToppings;
+import com.pluralsight.*;
+
 import java.time.LocalDateTime;
 import java.util.Random;
 
@@ -86,9 +84,9 @@ public class ScreenDisplay {
         }
     }
     private void processPizzaOrder(){
-        //todo: acutally add pizza to the order list.
+        //add pizza to the order list.
         PizzaSize size = Console.promptForPizzaSize("What size of Pizza would you like(Personal/Medium/Large): ");
-        CrustType crust = Console.promptForPizzaCrust("What type of crust would you like? ");
+        CrustType crust = Console.promptForPizzaCrust("What type of crust would you like(Thin/Regular/Thick/Cauliflower): ");
         boolean stuffed = Console.promptForYesNo("Would you like to make your pizza stuffed crust? ");
         Pizza pizza = new Pizza(size,crust,stuffed);
         askForPizzaToppings(pizza);
@@ -121,11 +119,20 @@ public class ScreenDisplay {
         }
     }
     private void processDrinkOrder(){
-        //todo: actually add drinks to order list
+        //Add drinks to order list.
+        String drinkName = Console.promptForString("What would you like to drink? ");
+        String drinkSize = Console.promptForString("What size drink would you like? ");
+        Drinks drinks = new Drinks(drinkName,drinkSize);
+
+        order.addItem(drinks);
         System.out.println("Drink has been added!");
     }
     private void processGarlicKnotOrder(){
         //todo: Actually add garlic knots to the order.
+        int numGK = Console.promptForInt("How many Garlic Knots would you like? ");
+        GarlicKnots garlicKnots = new GarlicKnots(numGK);
+
+        order.addItem(garlicKnots);
         System.out.println("Your Garlic Knots have been added!");
     }
     private void checkOut(){

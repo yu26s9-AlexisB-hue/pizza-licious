@@ -1,0 +1,13 @@
+==== RECEIPT ====
+Order ID: ORDER-8939
+Date: 2026-05-27T16:23:05.417261600
+
+PERSONAL CAULIFLOWER Crust pizza with 
+TOMATOES
+BASIL
+Price: $13.0
+
+sprite Price: 3.0
+Price: $3.0
+
+Total: $16.0
