@@ -140,45 +140,4 @@ public class Console {
         }
     }
 
-    /**
-     * Prompts the user to type out which Premium topping that the would like.
-     * @param prompt display to the user
-     * @return the enum
-     */
-
-    public static PremiumType promptForPremiumToppings(String prompt){
-        while(true) {
-            try {
-                System.out.println(prompt);
-
-                String premiumTopping = scanner.nextLine().toUpperCase();
-
-                return PremiumType.valueOf(premiumTopping);
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid topping.");
-            }
-        }
-    }
-
-    /**
-     * prompts the user for their choice of a regular topping
-     * @param prompt display to the user
-     * @return the enum
-     */
-
-    public static RegularType promptForRegularToppings(String prompt){
-        while(true){
-            try {
-//                System.out.println(prompt);
-//
-//                String regularTopping = scanner.nextLine().toUpperCase();
-
-//                return RegularType.valueOf(regularTopping);
-
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid topping.");
-            }
-        }
-    }
-
 }
