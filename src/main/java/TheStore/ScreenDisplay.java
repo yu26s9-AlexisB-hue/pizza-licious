@@ -10,7 +10,6 @@ import com.pluralsight.PremiumToppings;
 import com.pluralsight.RegularToppings;
 
 import java.time.LocalDate;
-import java.util.Locale;
 import java.util.Random;
 
 public class ScreenDisplay {
@@ -98,7 +97,6 @@ public class ScreenDisplay {
         order.addItem(pizza);
         System.out.println("Pizza has been add!");
     }
-
     private void askForPizzaToppings(Pizza pizza){
 
         boolean running = true;
@@ -106,15 +104,11 @@ public class ScreenDisplay {
         while (running) {
 
             String toppingChoice = Console.promptForString("What Topping category would you like to chose from first(Premium/Regular): ");
-            System.out.println("type 'done' when you are finished.");
+            System.out.println("type '0' when you are finished.");
 
             switch (toppingChoice) {
                 case "premium":
-                    String premiums = Console.promptForString("What toppings would you like to add? ").toUpperCase();
-                    PremiumType toppingType = processingPremiumToppings(premiums);
-                    PremiumToppings pt = new PremiumToppings(false, toppingType);
-                    pizza.addTopping(pt);
-                    System.out.println("type 'done' when you are finished.");
+                    promptForPremiumToppings(pizza);
                     break;
 
                 case "regular":
@@ -189,7 +183,18 @@ public class ScreenDisplay {
             }
         }
     }
-    private static RegularType promptingForRegularToppings(Pizza pizza){
+    private static void promptForPremiumToppings(Pizza pizza){
+        boolean ordering = true;
+        while(ordering) {
+            String premiums = Console.promptForString("What toppings would you like to add? ").toUpperCase();
+            PremiumType toppingType = processingPremiumToppings(premiums);
+            PremiumToppings pt = new PremiumToppings(false, toppingType);
+            pizza.addTopping(pt);
+            System.out.println("type 'done' when you are finished.");
+            ordering = Console.promptForYesNo("Would you like to add another topping? ");
+        }
+    }
+    private static void promptingForRegularToppings(Pizza pizza){
         boolean ordering = true;
         while(ordering){
             String regular = Console.promptForString("What toppings would you like to add? ").toUpperCase();
@@ -199,7 +204,6 @@ public class ScreenDisplay {
 
             ordering = Console.promptForYesNo("Would you like to add another topping? ");
         }
-        return null;
     }
     private void menuDisplay(String nameOfMenu){
         String category = """
