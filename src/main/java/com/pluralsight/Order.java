@@ -35,8 +35,8 @@ public class Order {
         this.date = date;
     }
 
-    public void addPizza(OrderedItems pizza) {
-        orderedItems.add(pizza);
+    public void addItem(OrderedItems item) {
+        orderedItems.add(item);
     }
 
     public double calculateTotal(){

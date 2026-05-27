@@ -6,9 +6,9 @@ public class PremiumToppings extends Toppings{
     private PremiumType premium;
     private boolean isMeat;
 
-    public PremiumToppings(boolean isExtra, boolean isMeat, PremiumType premium) {
+    public PremiumToppings(boolean isExtra, PremiumType premium) {
         super(isExtra);
-        this.isMeat = isMeat;
+        this.isMeat = premium.isMeat();
         this.premium = premium;
     }
 

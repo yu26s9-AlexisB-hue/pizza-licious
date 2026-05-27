@@ -2,10 +2,15 @@ package TheStore;
 
 import ToppingEnums.CrustType;
 import ToppingEnums.PizzaSize;
+import ToppingEnums.PremiumType;
+import ToppingEnums.RegularType;
 import com.pluralsight.Order;
 import com.pluralsight.Pizza;
+import com.pluralsight.PremiumToppings;
+import com.pluralsight.RegularToppings;
 
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Random;
 
 public class ScreenDisplay {
@@ -88,8 +93,39 @@ public class ScreenDisplay {
         CrustType crust = Console.promptForPizzaCrust("What type of crust would you like? ");
         boolean stuffed = Console.promptForYesNo("Would you like to make your pizza stuffed crust? ");
         Pizza pizza = new Pizza(size,crust,stuffed);
-        order.addPizza(pizza);
+        askForPizzaToppings(pizza);
+
+        order.addItem(pizza);
         System.out.println("Pizza has been add!");
+    }
+
+    private void askForPizzaToppings(Pizza pizza){
+
+        boolean running = true;
+
+        while (running) {
+
+            String toppingChoice = Console.promptForString("What Topping category would you like to chose from first(Premium/Regular): ");
+            System.out.println("type 'done' when you are finished.");
+
+            switch (toppingChoice) {
+                case "premium":
+                    String premiums = Console.promptForString("What toppings would you like to add? ").toUpperCase();
+                    PremiumType toppingType = processingPremiumToppings(premiums);
+                    PremiumToppings pt = new PremiumToppings(false, toppingType);
+                    pizza.addTopping(pt);
+                    System.out.println("type 'done' when you are finished.");
+                    break;
+
+                case "regular":
+                    promptingForRegularToppings(pizza);
+                    break;
+
+                case "0":
+                    running = false;
+
+            }
+        }
     }
     private void processDrinkOrder(){
         //todo: actually add drinks to order list
@@ -131,4 +167,105 @@ public class ScreenDisplay {
 
         return "ORDER-" + randomNum;
     }
+    private static RegularType processingRegToppings(String regularTopping ){
+        while(true){
+            try {
+
+                return RegularType.valueOf(regularTopping);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid topping.");
+            }
+        }
+    }
+    private static PremiumType processingPremiumToppings(String premiumTopping){
+        while(true){
+            try {
+
+                return PremiumType.valueOf(premiumTopping);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid topping.");
+            }
+        }
+    }
+    private static RegularType promptingForRegularToppings(Pizza pizza){
+        boolean ordering = true;
+        while(ordering){
+            String regular = Console.promptForString("What toppings would you like to add? ").toUpperCase();
+            RegularType toppingType2 = processingRegToppings(regular);
+            RegularToppings reg = new RegularToppings(false, toppingType2);
+            pizza.addTopping(reg);
+
+            ordering = Console.promptForYesNo("Would you like to add another topping? ");
+        }
+        return null;
+    }
+    private void menuDisplay(String nameOfMenu){
+        String category = """
+                Meat
+                Cheese
+                Veggie
+                Sauce
+                Side
+                """;
+        nameOfMenu = Console.promptForString("What menu would you like to display: ");
+
+        if(nameOfMenu.equalsIgnoreCase("Meat")){
+            String premiumMeatMenu = """
+                        --Meat--
+                        Pepperoni
+                        Sausage
+                        Bacon
+                        Ham
+                        Meatball
+                        Chicken
+                        """;
+            System.out.println(premiumMeatMenu);
+
+        }else if(nameOfMenu.equalsIgnoreCase("Cheese")){
+            String premiumCheeseMenu = """
+                        --Cheese--
+                        Mozzarella
+                        Parmesan
+                        Ricotta
+                        Goat Cheese
+                        Buffalo Cheese
+                        """;
+            System.out.println(premiumCheeseMenu);
+
+        }else if(nameOfMenu.equalsIgnoreCase("Veggie")){
+            String regularVeggieMenu = """
+                    Onions
+                    Mushrooms
+                    Bell Peppers
+                    Olives
+                    Tomatoes
+                    Spinach
+                    Basil
+                    Pineapple
+                    Anchovies
+                    """;
+            System.out.println(regularVeggieMenu);
+
+        }else if(nameOfMenu.equalsIgnoreCase("Sauce")){
+            String sauceMenu = """
+                    Marinara
+                    Alfredo
+                    Pesto
+                    BBQ
+                    Buffalo
+                    Olive Oil
+                    """;
+            System.out.println(sauceMenu);
+
+        }else if(nameOfMenu.equalsIgnoreCase("Sides")){
+            String sideMenu = """
+                    Red Peppers
+                    Parmesan
+                    """;
+            System.out.println(sideMenu);
+        }
+    }
+
 }

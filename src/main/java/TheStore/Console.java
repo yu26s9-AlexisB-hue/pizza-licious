@@ -169,11 +169,11 @@ public class Console {
     public static RegularType promptForRegularToppings(String prompt){
         while(true){
             try {
-                System.out.println(prompt);
+//                System.out.println(prompt);
+//
+//                String regularTopping = scanner.nextLine().toUpperCase();
 
-                String regularTopping = scanner.nextLine().toUpperCase();
-
-                return RegularType.valueOf(regularTopping);
+//                return RegularType.valueOf(regularTopping);
 
             } catch (IllegalArgumentException e) {
                 System.out.println("Invalid topping.");

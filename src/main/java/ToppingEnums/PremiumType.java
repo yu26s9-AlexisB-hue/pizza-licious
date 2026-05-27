@@ -25,4 +25,8 @@ public enum PremiumType {
         return category;
     }
 
+    public boolean isMeat(){
+        return this.category.equalsIgnoreCase("MEAT");
+    }
+
 }
