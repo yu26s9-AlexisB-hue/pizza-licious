@@ -1,5 +1,0 @@
-==== RECEIPT ====
-Order ID: ORDER-2480
-Date: 2026-05-28T12:17:04.831714
-
-Total: $0.0

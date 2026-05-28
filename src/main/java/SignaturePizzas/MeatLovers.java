@@ -10,8 +10,8 @@ import com.pluralsight.RegularToppings;
 
 public class MeatLovers extends Pizza {
 
-    public MeatLovers(PizzaSize size, CrustType crustChoice, boolean isStuffedCrust) {
-        super(size, crustChoice, isStuffedCrust);
+    public MeatLovers(String name,PizzaSize size, CrustType crustChoice, boolean isStuffedCrust) {
+        super(name,size, crustChoice, isStuffedCrust);
 
         addTopping(new PremiumToppings(false, PremiumType.PEPPERONI,size));
         addTopping(new PremiumToppings(false,PremiumType.SAUSAGE,size));

@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pizza implements OrderedItems {
+    private String name;
     private PizzaSize size;
     private CrustType crustChoice;
     private boolean isStuffedCrust;
     private List<Toppings> toppings;
 
-    public Pizza(PizzaSize size, CrustType crustChoice, boolean isStuffedCrust) {
+    public Pizza(String name,PizzaSize size, CrustType crustChoice, boolean isStuffedCrust) {
+        this.name = name;
         this.size = size;
         this.crustChoice = crustChoice;
         this.isStuffedCrust = isStuffedCrust;
@@ -78,11 +80,17 @@ public class Pizza implements OrderedItems {
     @Override
     public String getReceiptDescription() {
         StringBuilder pizzaInfo = new StringBuilder();
+        pizzaInfo.append(name).append("\n");
+
         pizzaInfo.append(size).append(" ").append(crustChoice).append(" Crust pizza");
+
+        if(isStuffedCrust){
+            pizzaInfo.append("(Stuffed Crust)");
+        }
 
         //checks if toppings exist.
         if(!toppings.isEmpty()){
-            pizzaInfo.append(" with \n");
+            pizzaInfo.append(" with: \n");
 
             //Looping through toppings.
             for(int i = 0; i < toppings.size(); i++){

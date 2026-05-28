@@ -10,8 +10,8 @@ import com.pluralsight.RegularToppings;
 
 public class Hawaiian extends Pizza {
 
-    public Hawaiian(PizzaSize size, CrustType crustChoice, boolean isStuffedCrust) {
-        super(size, crustChoice, isStuffedCrust);
+    public Hawaiian(String name,PizzaSize size, CrustType crustChoice, boolean isStuffedCrust) {
+        super(name,size, crustChoice, isStuffedCrust);
 
         addTopping(new PremiumToppings(false, PremiumType.HAM,size));
         addTopping(new PremiumToppings(false,PremiumType.MOZZARELLA,size));

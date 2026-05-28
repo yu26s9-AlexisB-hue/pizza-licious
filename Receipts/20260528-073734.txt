@@ -1,0 +1,8 @@
+==== RECEIPT ====
+Order ID: ORDER-8855
+Date: 2026-05-28T19:37:34.155841800
+
+Large Root beer
+Price: $3.0
+
+Total: $3.0

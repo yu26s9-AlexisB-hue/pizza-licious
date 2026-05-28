@@ -1,0 +1,25 @@
+==== RECEIPT ====
+Order ID: ORDER-6275
+Date: 2026-05-28T19:34:25.048907600
+
+Cheese Pizza
+LARGE THICK Crust pizza(Stuffed Crust) with: 
+MOZZARELLA
+PARMESAN
+RICOTTA
+GOAT_CHEESE
+Price: $28.0
+
+Pepperoni Pizza
+LARGE THICK Crust pizza(Stuffed Crust) with: 
+PEPPERONI
+MOZZARELLA
+MARINARA
+PARMESAN
+RED_PEPPER
+Price: $24.25
+
+5 Rootbeer
+Price: $0.0
+
+Total: $52.25

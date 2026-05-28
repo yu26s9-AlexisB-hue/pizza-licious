@@ -10,8 +10,8 @@ import com.pluralsight.RegularToppings;
 
 public class BBQ extends Pizza {
 
-    public BBQ(PizzaSize size, CrustType crustChoice, boolean isStuffedCrust) {
-        super(size, crustChoice, isStuffedCrust);
+    public BBQ(String name,PizzaSize size, CrustType crustChoice, boolean isStuffedCrust) {
+        super(name,size, crustChoice, isStuffedCrust);
 
         addTopping(new PremiumToppings(false, PremiumType.CHICKEN,size));
         addTopping(new PremiumToppings(false,PremiumType.MOZZARELLA,size));

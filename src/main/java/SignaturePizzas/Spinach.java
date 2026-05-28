@@ -10,8 +10,8 @@ import com.pluralsight.RegularToppings;
 
 public class Spinach extends Pizza {
 
-    public Spinach(PizzaSize size, CrustType crustChoice, boolean isStuffedCrust) {
-        super(size, crustChoice, isStuffedCrust);
+    public Spinach(String name,PizzaSize size, CrustType crustChoice, boolean isStuffedCrust) {
+        super(name,size, crustChoice, isStuffedCrust);
 
         addTopping(new PremiumToppings(false, PremiumType.RICOTTA,size));
         addTopping(new PremiumToppings(false,PremiumType.PARMESAN,size));

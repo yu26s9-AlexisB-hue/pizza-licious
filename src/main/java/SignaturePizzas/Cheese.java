@@ -8,8 +8,8 @@ import com.pluralsight.PremiumToppings;
 
 public class Cheese extends Pizza {
 
-    public Cheese(PizzaSize size, CrustType crustChoice, boolean isStuffedCrust) {
-        super(size, crustChoice, isStuffedCrust);
+    public Cheese(String name, PizzaSize size, CrustType crustChoice, boolean isStuffedCrust) {
+        super(name,size, crustChoice, isStuffedCrust);
 
         addTopping(new PremiumToppings(false, PremiumType.MOZZARELLA,size));
         addTopping(new PremiumToppings(false,PremiumType.PARMESAN,size));

@@ -10,8 +10,8 @@ import com.pluralsight.RegularToppings;
 
 public class Veggie extends Pizza {
 
-    public Veggie(PizzaSize size, CrustType crustChoice, boolean isStuffedCrust) {
-        super(size, crustChoice, isStuffedCrust);
+    public Veggie(String name,PizzaSize size, CrustType crustChoice, boolean isStuffedCrust) {
+        super(name,size, crustChoice, isStuffedCrust);
 
         addTopping(new PremiumToppings(false, PremiumType.MOZZARELLA,size));
         addTopping(new RegularToppings(false, RegularType.ONIONS));

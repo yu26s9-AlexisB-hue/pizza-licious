@@ -59,6 +59,7 @@ public class ScreenDisplay {
     //Brings the user to a new screen.
     private void newOrderScreen(){
         boolean running2 = true;
+
         while(running2){
             String prompt2 = """
                     1 - Add Build-your-own Pizza
@@ -109,65 +110,76 @@ public class ScreenDisplay {
         PizzaSize size = Console.promptForPizzaSize("What size of Pizza would you like(Personal/Medium/Large): ");
         CrustType crust = Console.promptForPizzaCrust("What type of crust would you like(Thin/Regular/Thick/Cauliflower): ");
         boolean stuffed = Console.promptForYesNo("Would you like to make your pizza stuffed crust? ");
-        Pizza pizza = new Pizza(size,crust,stuffed);
+        Pizza pizza = new Pizza("Custom Pizza",size,crust,stuffed);
         askForPizzaToppings(pizza, size);
 
         order.addItem(pizza);
         System.out.println("Pizza has been add!");
     }
+
+    //Processing the signature order.
     private void proccessOrderForSigPizza(){
-        //add pizza to the order list.
-        System.out.println("Press '0' when you are finished with your order.");
-        PizzaSize size = Console.promptForPizzaSize("What size of Pizza would you like(Personal/Medium/Large): ");
-        CrustType crust = Console.promptForPizzaCrust("What type of crust would you like(Thin/Regular/Thick/Cauliflower): ");
-        boolean stuffed = Console.promptForYesNo("Would you like to make your pizza stuffed crust? ");
-        sigMenuDisplay();
-        String sigPizza = Console.promptForString("Which signature Pizza would you like to order: ");
 
         boolean ordering = true;
+
         while(ordering){
+            //add pizza to the order list.
+            System.out.println("Press '0' when you are finished with your order.");
+            PizzaSize size = Console.promptForPizzaSize("What size of Pizza would you like(Personal/Medium/Large): ");
+            CrustType crust = Console.promptForPizzaCrust("What type of crust would you like(Thin/Regular/Thick/Cauliflower): ");
+            boolean stuffed = Console.promptForYesNo("Would you like to make your pizza stuffed crust? ");
 
-            switch(sigPizza){
+            sigMenuDisplay();
 
-                case "Pepperoni":
-                    Pizza pepperoni = new Pepperoni(size,crust,stuffed);
+            String sigPizza = Console.promptForString("Which signature Pizza would you like to order: ");
+
+            Pizza pizza = null;
+            switch(sigPizza.trim().toUpperCase()){
+
+                case "PEPPERONI":
+                    pizza = new Pepperoni("Pepperoni Pizza",size,crust,stuffed);
                     break;
 
-                case "Cheese":
-                    Pizza cheese = new Cheese(size,crust,stuffed);
+                case "CHEESE":
+                    pizza = new Cheese("Cheese Pizza",size,crust,stuffed);
                     break;
 
-                case "MeatLovers":
-                    Pizza meat = new MeatLovers(size,crust,stuffed);
+                case "MEAT_LOVERS":
+                    pizza = new MeatLovers("MeatLovers Pizza",size,crust,stuffed);
                     break;
 
-                case "Veggie":
-                    Pizza veggie = new Veggie(size, crust,stuffed);
+                case "VEGGIE":
+                    pizza = new Veggie("Veggie Pizza",size, crust,stuffed);
                     break;
 
-                case "Spinach":
-                    Pizza spinach = new Spinach(size,crust,stuffed);
+                case "SPINACH":
+                    pizza = new Spinach("Spinach Pizza",size,crust,stuffed);
                     break;
 
                 case "BBQ":
-                    Pizza BBQ = new BBQ(size,crust,stuffed);
+                    pizza = new BBQ("BBQ Pizza",size,crust,stuffed);
                     break;
 
-                case "Hawaiian":
-                    Pizza hawaiian = new Hawaiian(size,crust,stuffed);
+                case "HAWAIIAN":
+                    pizza = new Hawaiian("Hawaiian Pizza",size,crust,stuffed);
                     break;
 
                 case "0":
                     ordering = false;
-                    break;
+                    continue;
 
                 default:
                     System.out.println("Invalid Entry.");
-                    break;
+                    continue;
 
             }
+
+            order.addItem(pizza);
+            System.out.println("Pizza added successfully!");
+            ordering = Console.promptForYesNo("Would you like to order another pizza? ");
         }
     }
+
     //Ask the user if the want premium or regular toppings
     private void askForPizzaToppings(Pizza pizza, PizzaSize size){
 
@@ -291,17 +303,18 @@ public class ScreenDisplay {
         System.out.println(regularMenu);
     }
 
+    //display signature pizza menu.
     private static void sigMenuDisplay(){
 
         String sigMenu = """
                 --Signature Menu--
-                    Pepperoni
-                     Cheese
-                    MeatLovers
-                      Veggie
-                      Spinach
-                       BBQ
-                      Hawaiian
+                Pepperoni
+                Cheese
+                Meat_Lovers
+                Veggie
+                Spinach
+                BBQ
+                Hawaiian
                 """;
         System.out.println(sigMenu);
     }

@@ -56,7 +56,7 @@ public class Order {
 
         for(OrderedItems order: orderedItems){
             System.out.println(order.getReceiptDescription());
-            System.out.println(order.getTotalValue());
+            System.out.println(order.getTotalValue()+ "\n");
         }
         System.out.println("Total: " + calculateTotal());
     }
