@@ -1,5 +1,6 @@
 package TheStore;
 
+import SignaturePizzas.*;
 import ToppingEnums.CrustType;
 import ToppingEnums.PizzaSize;
 import ToppingEnums.PremiumType;
@@ -61,13 +62,13 @@ public class ScreenDisplay {
         while(running2){
             String prompt2 = """
                     1 - Add Build-your-own Pizza
-                    1.5 - Add Signature Pizza
-                    2 - Add Drink
-                    3 - Add Garlic Knots
-                    4 - Proceed to Checkout
+                    2 - Add Signature Pizza
+                    3 - Add Drink
+                    4 - Add Garlic Knots
+                    5 - Proceed to Checkout
                     0 - Cancel Order
                     """;
-            //todo:add the options as I go
+
             int command2 = Console.promptForInt(prompt2);
 
             switch(command2){
@@ -76,14 +77,18 @@ public class ScreenDisplay {
                     break;
 
                 case 2:
-                    processDrinkOrder();
+                    proccessOrderForSigPizza();
                     break;
 
                 case 3:
-                    processGarlicKnotOrder();
+                    processDrinkOrder();
                     break;
 
                 case 4:
+                    processGarlicKnotOrder();
+                    break;
+
+                case 5:
                     checkOut();
                     break;
 
@@ -110,7 +115,59 @@ public class ScreenDisplay {
         order.addItem(pizza);
         System.out.println("Pizza has been add!");
     }
+    private void proccessOrderForSigPizza(){
+        //add pizza to the order list.
+        System.out.println("Press '0' when you are finished with your order.");
+        PizzaSize size = Console.promptForPizzaSize("What size of Pizza would you like(Personal/Medium/Large): ");
+        CrustType crust = Console.promptForPizzaCrust("What type of crust would you like(Thin/Regular/Thick/Cauliflower): ");
+        boolean stuffed = Console.promptForYesNo("Would you like to make your pizza stuffed crust? ");
+        sigMenuDisplay();
+        String sigPizza = Console.promptForString("Which signature Pizza would you like to order: ");
 
+        boolean ordering = true;
+        while(ordering){
+
+            switch(sigPizza){
+
+                case "Pepperoni":
+                    Pizza pepperoni = new Pepperoni(size,crust,stuffed);
+                    break;
+
+                case "Cheese":
+                    Pizza cheese = new Cheese(size,crust,stuffed);
+                    break;
+
+                case "MeatLovers":
+                    Pizza meat = new MeatLovers(size,crust,stuffed);
+                    break;
+
+                case "Veggie":
+                    Pizza veggie = new Veggie(size, crust,stuffed);
+                    break;
+
+                case "Spinach":
+                    Pizza spinach = new Spinach(size,crust,stuffed);
+                    break;
+
+                case "BBQ":
+                    Pizza BBQ = new BBQ(size,crust,stuffed);
+                    break;
+
+                case "Hawaiian":
+                    Pizza hawaiian = new Hawaiian(size,crust,stuffed);
+                    break;
+
+                case "0":
+                    ordering = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid Entry.");
+                    break;
+
+            }
+        }
+    }
     //Ask the user if the want premium or regular toppings
     private void askForPizzaToppings(Pizza pizza, PizzaSize size){
 
@@ -119,7 +176,6 @@ public class ScreenDisplay {
         while (running) {
 
             String toppingChoice = Console.promptForString("What Topping category would you like to chose from first(Premium/Regular): ");
-            System.out.println("type '0' when you are finished.");
 
             switch (toppingChoice) {
                 case "premium":
@@ -181,6 +237,7 @@ public class ScreenDisplay {
             PremiumToppings pt = new PremiumToppings(extra,toppingType,size);
             pizza.addTopping(pt);
             firstTopping = false;
+            System.out.println("type '0' when you are finished.");
             ordering = Console.promptForYesNo("Would you like to add another topping? ");
         }
     }
@@ -189,11 +246,14 @@ public class ScreenDisplay {
     private static void promptingForRegularToppings(Pizza pizza){
         boolean ordering = true;
         while(ordering){
+
+            rToppingMenuDisplay();
             String regular = Console.promptForString("What toppings would you like to add? ").toUpperCase();
             RegularType toppingType2 = processingRegToppings(regular);
             RegularToppings reg = new RegularToppings(false, toppingType2);
             pizza.addTopping(reg);
 
+            System.out.println("type '0' when you are finished.");
             ordering = Console.promptForYesNo("Would you like to add another topping? ");
         }
     }
@@ -201,6 +261,7 @@ public class ScreenDisplay {
     //shows the user a menu of the available premium toppings.
     private static void premiumMenuDisplay(){
         String premiumMenu = """
+                       -Premium Menu-
                     --Meat--   --Cheese--
                     Pepperoni   Mozzarella
                     Sausage      Parmesan
@@ -210,6 +271,39 @@ public class ScreenDisplay {
                     Chicken
                     """;
         System.out.println(premiumMenu);
+    }
+
+    //shows the user a menu of the available regular toppings.
+    private static void rToppingMenuDisplay(){
+        String regularMenu = """
+                    -Included Menu-
+                --Veggie--     --Sauce--
+                Onions          Alfredo
+                Mushrooms        Pesto
+                Bell_peppers      BBQ
+                Olives          Buffalo
+                Tomatoes       Olive_oil
+                Spinach
+                Basil          --Sides--
+                Pineapple      Red_pepper
+                Anchovies      Parmesan
+                """;
+        System.out.println(regularMenu);
+    }
+
+    private static void sigMenuDisplay(){
+
+        String sigMenu = """
+                --Signature Menu--
+                    Pepperoni
+                     Cheese
+                    MeatLovers
+                      Veggie
+                      Spinach
+                       BBQ
+                      Hawaiian
+                """;
+        System.out.println(sigMenu);
     }
 
     //Allows the user to add a drink to their order.
