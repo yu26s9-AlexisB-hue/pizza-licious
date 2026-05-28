@@ -1,0 +1,20 @@
+==== RECEIPT ====
+Order ID: ORDER-7366
+Date: 2026-05-28T08:16:20.273108900
+
+LARGE THICK Crust pizza with 
+ONIONS
+BELL_PEPPERS
+BACON
+Price: $22.0
+
+Sprite
+Price: $3.0
+
+Dr. Pepper
+Price: $3.0
+
+6 Garlic Knots
+Price: $9.0
+
+Total: $37.0

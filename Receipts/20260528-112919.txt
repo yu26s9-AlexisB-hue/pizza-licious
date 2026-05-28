@@ -1,0 +1,10 @@
+==== RECEIPT ====
+Order ID: ORDER-5279
+Date: 2026-05-28T11:29:19.460420700
+
+LARGE THICK Crust pizza with 
+PEPPERONI
+ExtraSAUSAGE
+Price: $26.5
+
+Total: $26.5

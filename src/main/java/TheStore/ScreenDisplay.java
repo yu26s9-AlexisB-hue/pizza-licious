@@ -40,14 +40,28 @@ public class ScreenDisplay {
             }
         }
     }
+
+    //initiates the creation of a new order everytime a user press "New Order".
     private void init(){
         order = new Order(idGenerator(), LocalDateTime.now());
     }
+
+    //Creating a random Order ID# everytime a user creates a new order.
+    private String idGenerator(){
+        Random random = new Random();
+
+        int randomNum = random.nextInt(9000) + 1000;
+
+        return "ORDER-" + randomNum;
+    }
+
+    //Brings the user to a new screen.
     private void newOrderScreen(){
         boolean running2 = true;
         while(running2){
             String prompt2 = """
-                    1 - Add Pizza
+                    1 - Add Build-your-own Pizza
+                    1.5 - Add Signature Pizza
                     2 - Add Drink
                     3 - Add Garlic Knots
                     4 - Proceed to Checkout
@@ -83,18 +97,22 @@ public class ScreenDisplay {
             }
         }
     }
+
+    //Brings the user to the window to order a pizza.
     private void processPizzaOrder(){
         //add pizza to the order list.
         PizzaSize size = Console.promptForPizzaSize("What size of Pizza would you like(Personal/Medium/Large): ");
         CrustType crust = Console.promptForPizzaCrust("What type of crust would you like(Thin/Regular/Thick/Cauliflower): ");
         boolean stuffed = Console.promptForYesNo("Would you like to make your pizza stuffed crust? ");
         Pizza pizza = new Pizza(size,crust,stuffed);
-        askForPizzaToppings(pizza);
+        askForPizzaToppings(pizza, size);
 
         order.addItem(pizza);
         System.out.println("Pizza has been add!");
     }
-    private void askForPizzaToppings(Pizza pizza){
+
+    //Ask the user if the want premium or regular toppings
+    private void askForPizzaToppings(Pizza pizza, PizzaSize size){
 
         boolean running = true;
 
@@ -105,7 +123,7 @@ public class ScreenDisplay {
 
             switch (toppingChoice) {
                 case "premium":
-                    promptForPremiumToppings(pizza);
+                    promptForPremiumToppings(pizza, size);
                     break;
 
                 case "regular":
@@ -118,6 +136,83 @@ public class ScreenDisplay {
             }
         }
     }
+
+    //goes through the enums for the premium topping.
+    private static RegularType processingRegToppings(String regularTopping ){
+        try {
+
+            return RegularType.valueOf(regularTopping);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid topping.");
+            return null;
+        }
+    }
+
+    //goes through the enums for the regular topping.
+    private static PremiumType processingPremiumToppings(String premiumTopping){
+
+        try {
+
+            return PremiumType.valueOf(premiumTopping);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid topping.");
+            return null;
+        }
+
+    }
+
+    //Prompts the user for the premium toppings that they want on their pizza.
+    private static void promptForPremiumToppings(Pizza pizza, PizzaSize size){
+
+        boolean ordering = true;
+        boolean firstTopping = true;
+
+        while(ordering) {
+
+            //Displays the Premium topping menu to the customer.
+            premiumMenuDisplay();
+            System.out.println("*More than 1 premium topping will be an extra charge*");
+
+            String premiums = Console.promptForString("What toppings would you like to add? ").toUpperCase();
+            PremiumType toppingType = processingPremiumToppings(premiums);
+            boolean extra = !firstTopping;
+            PremiumToppings pt = new PremiumToppings(extra,toppingType,size);
+            pizza.addTopping(pt);
+            firstTopping = false;
+            ordering = Console.promptForYesNo("Would you like to add another topping? ");
+        }
+    }
+
+    //Prompts the user for the regular toppings that they want on their pizza.
+    private static void promptingForRegularToppings(Pizza pizza){
+        boolean ordering = true;
+        while(ordering){
+            String regular = Console.promptForString("What toppings would you like to add? ").toUpperCase();
+            RegularType toppingType2 = processingRegToppings(regular);
+            RegularToppings reg = new RegularToppings(false, toppingType2);
+            pizza.addTopping(reg);
+
+            ordering = Console.promptForYesNo("Would you like to add another topping? ");
+        }
+    }
+
+    //shows the user a menu of the available premium toppings.
+    private static void premiumMenuDisplay(){
+        String premiumMenu = """
+                    --Meat--   --Cheese--
+                    Pepperoni   Mozzarella
+                    Sausage      Parmesan
+                    Bacon        Ricotta
+                    Ham         Goat_Cheese
+                    Meatball      Buffalo
+                    Chicken
+                    """;
+        System.out.println(premiumMenu);
+    }
+
+    //Allows the user to add a drink to their order.
     private void processDrinkOrder(){
         //Add drinks to order list.
         String drinkName = Console.promptForString("What would you like to drink? ");
@@ -127,21 +222,36 @@ public class ScreenDisplay {
         order.addItem(drinks);
         System.out.println("Drink has been added!");
     }
+
+    //Allows the user to add garlic knots to their order.
     private void processGarlicKnotOrder(){
-        //todo: Actually add garlic knots to the order.
+        //Adds garlic knots to the order.
         int numGK = Console.promptForInt("How many Garlic Knots would you like? ");
         GarlicKnots garlicKnots = new GarlicKnots(numGK);
 
         order.addItem(garlicKnots);
         System.out.println("Your Garlic Knots have been added!");
     }
+
+    //Holds the screen allowing the user to check out.
     private void checkOut(){
-        //todo: should bring the customer to new page where they decide to buy or cancel.
-        //todo:must display the order details and the price (orderedItems interface will come in handy).
-        System.out.println("Ready to check out?");
+        //Brings the customer to new page where they decide to buy or cancel.
         boolean running3 = true;
+        if(!canCheckout()){
+            System.out.println("""
+                    You cannot checkout yet.
+                    Your order must contain:
+                    - A pizza
+                    OR
+                    - A drink or garlic knots
+                    """);
+            running3 = false;
+        }
 
         while(running3){
+            //Displays the order details and the price (orderedItems interface will come in handy).
+            System.out.println("Ready to check out?");
+
             order.printReceipt();
             String prompt3 = """
                     1 - Confirm Order
@@ -161,122 +271,26 @@ public class ScreenDisplay {
             }
         }
     }
-    private String idGenerator(){
-        Random random = new Random();
 
-        int randomNum = random.nextInt(9000) + 1000;
+    //Checks if the order has a pizza or not.
+    private boolean canCheckout(){
+        boolean hasPizza = false;
+        boolean hasDrink = false;
+        boolean hasGarlicKnots = false;
 
-        return "ORDER-" + randomNum;
-    }
-    private static RegularType processingRegToppings(String regularTopping ){
-        while(true){
-            try {
-
-                return RegularType.valueOf(regularTopping);
-
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid topping.");
+        for(OrderedItems item: order.getOrderedItems()){
+            if(item instanceof Pizza){
+                hasPizza = true;
+            }else if(item instanceof Drinks){
+                hasDrink = true;
+            }else if(item instanceof GarlicKnots){
+                hasGarlicKnots = true;
             }
         }
-    }
-    private static PremiumType processingPremiumToppings(String premiumTopping){
-        while(true){
-            try {
-
-                return PremiumType.valueOf(premiumTopping);
-
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid topping.");
-            }
+        if (hasPizza){
+            return true;
         }
-    }
-    private static void promptForPremiumToppings(Pizza pizza){
-        boolean ordering = true;
-        while(ordering) {
-            String premiums = Console.promptForString("What toppings would you like to add? ").toUpperCase();
-            PremiumType toppingType = processingPremiumToppings(premiums);
-            PremiumToppings pt = new PremiumToppings(false, toppingType);
-            pizza.addTopping(pt);
-            System.out.println("type 'done' when you are finished.");
-            ordering = Console.promptForYesNo("Would you like to add another topping? ");
-        }
-    }
-    private static void promptingForRegularToppings(Pizza pizza){
-        boolean ordering = true;
-        while(ordering){
-            String regular = Console.promptForString("What toppings would you like to add? ").toUpperCase();
-            RegularType toppingType2 = processingRegToppings(regular);
-            RegularToppings reg = new RegularToppings(false, toppingType2);
-            pizza.addTopping(reg);
-
-            ordering = Console.promptForYesNo("Would you like to add another topping? ");
-        }
-    }
-    private void menuDisplay(String nameOfMenu){
-        String category = """
-                Meat
-                Cheese
-                Veggie
-                Sauce
-                Side
-                """;
-        nameOfMenu = Console.promptForString("What menu would you like to display: ");
-
-        if(nameOfMenu.equalsIgnoreCase("Meat")){
-            String premiumMeatMenu = """
-                        --Meat--
-                        Pepperoni
-                        Sausage
-                        Bacon
-                        Ham
-                        Meatball
-                        Chicken
-                        """;
-            System.out.println(premiumMeatMenu);
-
-        }else if(nameOfMenu.equalsIgnoreCase("Cheese")){
-            String premiumCheeseMenu = """
-                        --Cheese--
-                        Mozzarella
-                        Parmesan
-                        Ricotta
-                        Goat Cheese
-                        Buffalo Cheese
-                        """;
-            System.out.println(premiumCheeseMenu);
-
-        }else if(nameOfMenu.equalsIgnoreCase("Veggie")){
-            String regularVeggieMenu = """
-                    Onions
-                    Mushrooms
-                    Bell Peppers
-                    Olives
-                    Tomatoes
-                    Spinach
-                    Basil
-                    Pineapple
-                    Anchovies
-                    """;
-            System.out.println(regularVeggieMenu);
-
-        }else if(nameOfMenu.equalsIgnoreCase("Sauce")){
-            String sauceMenu = """
-                    Marinara
-                    Alfredo
-                    Pesto
-                    BBQ
-                    Buffalo
-                    Olive Oil
-                    """;
-            System.out.println(sauceMenu);
-
-        }else if(nameOfMenu.equalsIgnoreCase("Sides")){
-            String sideMenu = """
-                    Red Peppers
-                    Parmesan
-                    """;
-            System.out.println(sideMenu);
-        }
+        return hasDrink || hasGarlicKnots;
     }
 
 }

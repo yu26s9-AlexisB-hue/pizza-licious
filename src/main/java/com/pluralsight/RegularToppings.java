@@ -22,7 +22,7 @@ public class RegularToppings extends Toppings {
     @Override
     public double calculatePrice(){
         //Code to find the final price.
-        double price = 1.00;
+        double price = 0;
 
         if(isExtra()){
             price += 0.50;
@@ -34,7 +34,7 @@ public class RegularToppings extends Toppings {
     public String toString(){
         //formating how the user see the extra topping on the receipt.
         if(isExtra()){
-            return "Extra" + regular;
+            return "Extra " + regular;
         }
 
         return regular.toString();

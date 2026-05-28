@@ -35,6 +35,10 @@ public class Order {
         this.date = date;
     }
 
+    public List<OrderedItems> getOrderedItems() {
+        return orderedItems;
+    }
+
     public void addItem(OrderedItems item) {
         orderedItems.add(item);
     }
@@ -49,6 +53,7 @@ public class Order {
     }
 
     public void printReceipt(){
+
         for(OrderedItems order: orderedItems){
             System.out.println(order.getReceiptDescription());
             System.out.println(order.getTotalValue());
