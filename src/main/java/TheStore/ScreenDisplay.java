@@ -379,6 +379,7 @@ public class ScreenDisplay {
 
                 case 0:
                     running3 = false;
+                    init();
                     System.out.println("Order Canceled.");
                     break;
             }

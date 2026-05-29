@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Order {
@@ -56,6 +57,8 @@ public class Order {
     }
 
     public void printReceipt(){
+        //reverse the list
+        Collections.reverse(orderedItems);
 
         for(OrderedItems order: orderedItems){
             System.out.println(order.getReceiptDescription());

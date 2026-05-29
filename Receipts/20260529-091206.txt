@@ -1,0 +1,32 @@
+==== RECEIPT ====
+Order ID: ORDER-7212
+Date: 05/29/2026 09:12 AM
+
+Custom Pizza
+LARGE THICK Crust pizza(Stuffed Crust) with: 
+MOZZARELLA
+PESTO
+OLIVES
+Price: $21.25
+
+Hawaiian Pizza
+LARGE THIN Crust pizza with: 
+HAM
+MOZZARELLA
+PINEAPPLE
+MARINARA
+Price: $21.75
+
+Pepperoni Pizza
+LARGE THICK Crust pizza(Stuffed Crust) with: 
+PEPPERONI
+MOZZARELLA
+MARINARA
+PARMESAN
+RED_PEPPER
+Price: $24.25
+
+Large Sprite
+Price: $3.00
+
+Total: $70.25
