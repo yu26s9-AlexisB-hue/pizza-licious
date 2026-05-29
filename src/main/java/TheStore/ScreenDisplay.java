@@ -362,6 +362,7 @@ public class ScreenDisplay {
             order.printReceipt();
             String prompt3 = """
                     1 - Confirm Order
+                    2 - Delete Item
                     0 - Cancel Order
                     """;
             int command3 = Console.promptForInt(prompt3);
@@ -371,6 +372,11 @@ public class ScreenDisplay {
                     order.confirmOrder();
                     System.out.println("Order is complete!");
                     return;
+
+                case 2:
+                    removeItem();
+                    continue;
+
                 case 0:
                     running3 = false;
                     System.out.println("Order Canceled.");
@@ -378,7 +384,6 @@ public class ScreenDisplay {
             }
         }
     }
-
     //Checks if the order has a pizza or not.
     private boolean canCheckout(){
         boolean hasPizza = false;
@@ -398,6 +403,18 @@ public class ScreenDisplay {
             return true;
         }
         return hasDrink || hasGarlicKnots;
+    }
+    private void removeItem(){
+        String promptItem = Console.promptForString("Which Item would you like to remove?");
+        for(OrderedItems item: order.getOrderedItems()){
+            if(item.getReceiptDescription().equalsIgnoreCase(promptItem)){
+                order.removeItem(item);
+
+                System.out.println("Item removed.");
+                return;
+            }
+        }
+        System.out.println("Item not found.");
     }
 
 }

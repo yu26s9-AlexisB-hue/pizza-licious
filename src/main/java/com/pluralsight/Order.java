@@ -38,6 +38,9 @@ public class Order {
     public List<OrderedItems> getOrderedItems() {
         return orderedItems;
     }
+    public void removeItem(OrderedItems items){
+       orderedItems.remove(items);
+    }
 
     public void addItem(OrderedItems item) {
         orderedItems.add(item);
@@ -63,6 +66,7 @@ public class Order {
 
     public void confirmOrder(){
         DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss");
+        DateTimeFormatter receiptForm = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a");
         String newOrder = date.format(dateTime);
 
         try {
@@ -74,7 +78,7 @@ public class Order {
             writer.write("Order ID: " + orderId);
             writer.newLine();
 
-            writer.write("Date: " + date);
+            writer.write("Date: " + date.format(receiptForm));
             writer.newLine();
             writer.newLine();
 
@@ -83,12 +87,12 @@ public class Order {
                 writer.write(order.getReceiptDescription());
                 writer.newLine();
 
-                writer.write("Price: $" + order.getTotalValue());
+                writer.write("Price: $" + String.format("%.2f",order.getTotalValue()) );
                 writer.newLine();
                 writer.newLine();
             }
 
-            writer.write("Total: $" + calculateTotal());
+            writer.write("Total: $" + String.format("%.2f",calculateTotal()));
             writer.newLine();
 
             writer.close();

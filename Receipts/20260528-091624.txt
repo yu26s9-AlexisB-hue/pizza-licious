@@ -1,0 +1,17 @@
+==== RECEIPT ====
+Order ID: ORDER-5405
+Date: 2026-05-28T21:16:24.108337200
+
+Pepperoni Pizza
+LARGE THICK Crust pizza(Stuffed Crust) with: 
+PEPPERONI
+MOZZARELLA
+MARINARA
+PARMESAN
+RED_PEPPER
+Price: $24.25
+
+Large Root beer
+Price: $3.0
+
+Total: $27.25
