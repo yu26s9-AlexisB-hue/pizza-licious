@@ -1,0 +1,8 @@
+==== RECEIPT ====
+Order ID: ORDER-6782
+Date: 05/28/2026 09:43 PM
+
+large Lemonade
+Price: $3.00
+
+Total: $3.00

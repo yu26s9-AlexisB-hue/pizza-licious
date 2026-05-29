@@ -59,9 +59,9 @@ public class Order {
 
         for(OrderedItems order: orderedItems){
             System.out.println(order.getReceiptDescription());
-            System.out.println(order.getTotalValue()+ "\n");
+            System.out.println("$: " + String.format("%.2f",order.getTotalValue()) + "\n");
         }
-        System.out.println("Total: " + calculateTotal());
+        System.out.println("Total: " + String.format("%.2f",calculateTotal()));
     }
 
     public void confirmOrder(){

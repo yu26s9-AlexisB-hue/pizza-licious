@@ -99,7 +99,7 @@ public class PremiumToppings extends Toppings{
     @Override
     public String toString(){
         if(isExtra()){
-            return "Extra " + premium + " " + getExtra();
+            return "Extra " + premium + " " + String.format("%.2f",getExtra());
         }
         return premium.toString();
     }

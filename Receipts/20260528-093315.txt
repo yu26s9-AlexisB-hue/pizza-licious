@@ -1,0 +1,11 @@
+==== RECEIPT ====
+Order ID: ORDER-2570
+Date: 05/28/2026 09:33 PM
+
+Large Sprite
+Price: $3.00
+
+6 Garlic Knots
+Price: $9.00
+
+Total: $12.00

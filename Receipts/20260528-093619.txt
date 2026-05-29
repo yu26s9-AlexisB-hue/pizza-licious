@@ -1,0 +1,19 @@
+==== RECEIPT ====
+Order ID: ORDER-1297
+Date: 05/28/2026 09:36 PM
+
+Cheese Pizza
+PERSONAL REGULAR Crust pizza with: 
+MOZZARELLA
+PARMESAN
+RICOTTA
+GOAT_CHEESE
+Price: $11.50
+
+Large Pepsi
+Price: $3.00
+
+4 Garlic Knots
+Price: $6.00
+
+Total: $20.50
