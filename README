@@ -9,9 +9,7 @@ The application is designed to simulate a real pizza shop ordering system by gui
 Features:
 
 Pizza Customization:
-Customers can fully customize their pizzas by selecting:
-
-Pizza Sizes:
+Customers can fully customize their pizzas by selecting from their Pizza Sizes:
 - Personal (8")
 - Medium (12")
 - Large (16")
@@ -40,11 +38,11 @@ Additional Pizza Options:
 
 ---
 
-# Screens and Features
+Screens and Features:
 
 Home Screen:
-
 When the application starts, the user is presented with the Home Screen.
+![Home Screen](Screenshot 2026-05-28 215211.png)
 
 Options:
 - 1) New Order
