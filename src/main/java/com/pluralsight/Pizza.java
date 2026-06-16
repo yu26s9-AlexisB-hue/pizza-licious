@@ -67,6 +67,10 @@ public class Pizza implements OrderedItems {
         toppings.add(topping);
     }
 
+    public void removeTopping(Toppings topping){
+        toppings.remove(topping);
+    }
+
     public double getTotalValue(){
         double total = getCrustPrice();
 

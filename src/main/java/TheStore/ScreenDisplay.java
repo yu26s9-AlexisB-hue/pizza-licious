@@ -385,6 +385,7 @@ public class ScreenDisplay {
             }
         }
     }
+
     //Checks if the order has a pizza or not.
     private boolean canCheckout(){
         boolean hasPizza = false;
@@ -405,6 +406,8 @@ public class ScreenDisplay {
         }
         return hasDrink || hasGarlicKnots;
     }
+
+    //can remove an entire Item.
     private void removeItem(){
         String promptItem = Console.promptForString("Which Item would you like to remove?");
         for(OrderedItems item: order.getOrderedItems()){
@@ -417,5 +420,19 @@ public class ScreenDisplay {
         }
         System.out.println("Item not found.");
     }
+
+//    private void removeTopping(){
+//        String promptItem = Console.promptForString("Which topping would you like to remove?");
+//        for(Pizza topping: order.getOrderedItems()){
+//            if(topping.getReceiptDescription().equalsIgnoreCase(promptItem)){
+//                pizza.removeItem(topping);
+//
+//                System.out.println("Item removed.");
+//                return;
+//            }
+//        }
+//        System.out.println("Item not found.");
+
+//    }
 
 }
